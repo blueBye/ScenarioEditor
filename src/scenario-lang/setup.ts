@@ -14,5 +14,4 @@ export function setupLanguage() {
         monaco.languages.setMonarchTokensProvider(languageID, monarchLanguage);
         monaco.languages.setLanguageConfiguration(languageID, richLanguageConfiguration);
     });
-
 }

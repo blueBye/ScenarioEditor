@@ -18,7 +18,6 @@ const Editor: React.FC<IEditorPorps> = (props: IEditorPorps) => {
                 language: props.language,
                 minimap: { enabled: true },
                 autoIndent: true,
-                // theme: 'vs-dark',
                 theme: 'hc-black',
                 roundedSelection: false,
                 lineNumbers: 'on',
@@ -27,7 +26,7 @@ const Editor: React.FC<IEditorPorps> = (props: IEditorPorps) => {
         }
     }, [assignRef])
 
-    return <div ref={assignRef} style={{ height: '90vh', width: '60vw' }}></div>;
+    return <div ref={assignRef} style={{ height: '100%', width: '100%' }}></div>;
 }
 
 export { Editor };
