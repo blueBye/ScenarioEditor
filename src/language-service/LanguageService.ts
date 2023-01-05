@@ -1,10 +1,10 @@
 import { EquationContext } from "../ANTLR/ScenarioGrammarParser";
 import { parseAndGetASTRoot, parseAndGetSyntaxErrors } from "./Parser";
-import { ITodoLangError } from "./TodoLangErrorListener";
+import { ITLangError } from "./LangErrorListener";
 
-export default class TodoLangLanguageService {
-    validate(code: string): ITodoLangError[] {
-        const syntaxErrors: ITodoLangError[] = parseAndGetSyntaxErrors(code);
+export default class LanguageService {
+    validate(code: string): ILangError[] {
+        const syntaxErrors: ILangError[] = parseAndGetSyntaxErrors(code);
         //Later we will append semantic errors
         return syntaxErrors;
     }

@@ -6,7 +6,7 @@ import { languageID } from './scenario-lang/config';
 import {setupLanguage} from "./scenario-lang/setup";
 import * as YAML from 'json-to-pretty-yaml'
 
-import parse from "./language-service/parser";
+import parse from "./language-service/Parser";
 
 
 const code = '13+2+1';

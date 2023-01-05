@@ -3,7 +3,7 @@ import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor
 import { ScenarioGrammarLexer } from '../ANTLR/ScenarioGrammarLexer'
 import { ScenarioGrammarParser, EquationContext } from '../ANTLR/ScenarioGrammarParser'
 import { ScenarioGrammarVisitor } from '../ANTLR/ScenarioGrammarVisitor'
-import { ILangError, LangErrorListener } from './errorListener';
+import { ILangError, LangErrorListener } from './ErrorListener';
 
 
 export default function parse(code: string): {ast: EquationContext, errors: ILangError[]} {

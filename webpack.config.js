@@ -5,6 +5,7 @@ module.exports = {
     entry: {
         app: './src/index.tsx',
         "editor.worker": 'monaco-editor-core/esm/vs/editor/editor.worker.js',
+        "LangWorker": './src/scenario-lang/lang.worker.ts'
     },
     output: {
         globalObject: 'self',
@@ -12,6 +13,8 @@ module.exports = {
             switch (chunkData.chunk.name) {
                 case 'editor.worker':
                     return 'editor.worker.js';
+                case 'LangWorker':
+                    return "LangWorker.js"
                 default:
                     return 'bundle.[hash].js';
             }
