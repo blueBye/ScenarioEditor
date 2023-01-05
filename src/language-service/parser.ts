@@ -1,18 +1,38 @@
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor'
-import { ScenarioGrammerLexer } from '../ANTLR/ScenarioGrammerLexer'
-import { ScenarioGrammerParser, EquationContext } from '../ANTLR/ScenarioGrammerParser'
-import { ScenarioGrammerVisitor } from '../ANTLR/ScenarioGrammerVisitor'
+import { ScenarioGrammarLexer } from '../ANTLR/ScenarioGrammarLexer'
+import { ScenarioGrammarParser, EquationContext } from '../ANTLR/ScenarioGrammarParser'
+import { ScenarioGrammarVisitor } from '../ANTLR/ScenarioGrammarVisitor'
+import { ILangError, LangErrorListener } from './errorListener';
 
 
-export default function getAST(code: string): EquationContext {
+export default function parse(code: string): {ast: EquationContext, errors: ILangError[]} {
     let inputStream = new ANTLRInputStream(code);
-    let lexer = new ScenarioGrammerLexer(inputStream);
+    let lexer = new ScenarioGrammarLexer(inputStream);
+
+    // lexer error listener
+    lexer.removeErrorListeners()
+    const langErrorsListner = new LangErrorListener();
+    lexer.addErrorListener(langErrorsListner);
+
+    // parser error listener
     let tokenStream = new CommonTokenStream(lexer);
-    let parser = new ScenarioGrammerParser(tokenStream);
-    
-    let tree = parser.equation();
+    let parser = new ScenarioGrammarParser(tokenStream);
+    parser.removeErrorListeners();
+    parser.addErrorListener(langErrorsListner);
+
+    let ast = parser.equation();
+    const errors: ILangError[]  = langErrorsListner.getErrors();
     // console.log(tree.toStringTree(parser));
 
-    return tree;
+    return {ast, errors};
+}
+
+export function parseAndGetASTRoot(code: string): EquationContext {
+    const {ast} = parse(code);
+    return ast;
+}
+export function parseAndGetSyntaxErrors(code: string): ILangError[] {
+    const {errors} = parse(code);
+    return errors;
 }

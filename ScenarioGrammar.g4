@@ -1,4 +1,4 @@
-grammar ScenarioGrammer;
+grammar ScenarioGrammar;
 
 equation: expression;
 

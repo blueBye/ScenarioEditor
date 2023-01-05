@@ -1,12 +1,12 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor'
-import { ScenarioGrammerVisitor } from '../ANTLR/ScenarioGrammerVisitor'
-import { NumberContext } from "../ANTLR/ScenarioGrammerParser";
-import { AdditionOrSubtractionContext } from "../ANTLR/ScenarioGrammerParser";
-import { EquationContext } from "../ANTLR/ScenarioGrammerParser";
-import { ExpressionContext } from "../ANTLR/ScenarioGrammerParser";
+import { ScenarioGrammarVisitor } from '../ANTLR/ScenarioGrammarVisitor'
+import { NumberContext } from "../ANTLR/ScenarioGrammarParser";
+import { AdditionOrSubtractionContext } from "../ANTLR/ScenarioGrammarParser";
+import { EquationContext } from "../ANTLR/ScenarioGrammarParser";
+import { ExpressionContext } from "../ANTLR/ScenarioGrammarParser";
 
 
-export class CustomVisitor extends AbstractParseTreeVisitor<object> implements ScenarioGrammerVisitor<object> {
+export class CustomVisitor extends AbstractParseTreeVisitor<object> implements ScenarioGrammarVisitor<object> {
     defaultResult() {
         return {};
     }

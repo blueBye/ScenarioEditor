@@ -4,7 +4,7 @@
     "description": "TodoLang editor",
     "scripts": {
         "start": "webpack-dev-server --hot --open",
-        "antlr4ts": "antlr4ts ./ScenarioGrammer.g4 -visitor -o ./src/ANTLR"
+        "antlr4ts": "antlr4ts ./ScenarioGrammar.g4 -visitor -o ./src/ANTLR"
     },
     "author": "Open",
     "license": "ISC",

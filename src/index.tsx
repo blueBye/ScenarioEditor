@@ -6,12 +6,12 @@ import { languageID } from './scenario-lang/config';
 import {setupLanguage} from "./scenario-lang/setup";
 import * as YAML from 'json-to-pretty-yaml'
 
-import getAST from "./language-service/parser";
+import parse from "./language-service/parser";
 
 
 const code = '13+2+1';
-let tree = getAST(code);
-// console.log(tree.toStringTree(parser));
+let {ast} = parse(code);
+console.log(ast);
 
 // ========================== 2
 // import { CustomVisitor } from './utils/visitor'
