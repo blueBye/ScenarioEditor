@@ -141,24 +141,11 @@ monaco.languages.registerCompletionItemProvider(languageID, {
         };
 		var suggestions = [
 			{
-				label: 'simpleText',
-				kind: monaco.languages.CompletionItemKind.Text,
-				insertText: 'simpleText',
-                range: range
-			},
-			{
-				label: 'testing',
-				kind: monaco.languages.CompletionItemKind.Keyword,
-				insertText: 'testing(${1:condition})',
-				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-                range: range
-			},
-			{
-				label: 'ifelse',
+				label: 'DESCRIPTION',
 				kind: monaco.languages.CompletionItemKind.Snippet,
-				insertText: ['if (${1:condition}) {', '\t$0', '} else {', '\t', '}'].join('\n'),
+				insertText: 'DESCRIPTION "${1:description}"\n',
 				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
-				documentation: 'If-Else Statement',
+				documentation: 'description for entity',
                 range: range
 			}
 		];

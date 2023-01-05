@@ -6,21 +6,12 @@ import { languageID } from './scenario-lang/config';
 import {setupLanguage} from "./scenario-lang/setup";
 import * as YAML from 'json-to-pretty-yaml'
 
+import getAST from "./language-service/parser";
 
-// ========================== 1
-// import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
-// import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor'
-// import { ScenarioGrammerLexer } from './ANTLR/ScenarioGrammerLexer'
-// import { ScenarioGrammerParser } from './ANTLR/ScenarioGrammerParser'
-// import { ScenarioGrammerVisitor } from './ANTLR/ScenarioGrammerVisitor'
 
-// let inputStream = new ANTLRInputStream('13+2+1');
-// let lexer = new ScenarioGrammerLexer(inputStream);
-// let tokenStream = new CommonTokenStream(lexer);
-// let parser = new ScenarioGrammerParser(tokenStream);
-// let tree = parser.equation();
+const code = '13+2+1';
+let tree = getAST(code);
 // console.log(tree.toStringTree(parser));
-
 
 // ========================== 2
 // import { CustomVisitor } from './utils/visitor'
@@ -33,10 +24,10 @@ import * as YAML from 'json-to-pretty-yaml'
 // ========================== 3
 
 
-const json = { "a": 1, "b": 2, "c": 3 };
-const data = YAML.stringify(json);
-console.log("data: ")
-console.log(data)
+// const json = { "a": 1, "b": 2, "c": 3 };
+// const data = YAML.stringify(json);
+// console.log("data: ")
+// console.log(data)
 
 // ========================== base
 setupLanguage();
