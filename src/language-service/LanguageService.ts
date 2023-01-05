@@ -1,6 +1,6 @@
 import { EquationContext } from "../ANTLR/ScenarioGrammarParser";
 import { parseAndGetASTRoot, parseAndGetSyntaxErrors } from "./Parser";
-import { ITLangError } from "./LangErrorListener";
+import { ILangError } from "./ErrorListener";
 
 export default class LanguageService {
     validate(code: string): ILangError[] {

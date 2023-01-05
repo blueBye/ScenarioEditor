@@ -2,7 +2,7 @@ import * as monaco from "monaco-editor-core";
 
 import IWorkerContext = monaco.worker.IWorkerContext;
 import LanguageService from "../language-service/LanguageService";
-import { ITodoLangError } from "../language-service/ErrorListener";
+import { ILangError } from "../language-service/ErrorListener";
 
 
 export class LangWorker {
@@ -13,7 +13,7 @@ export class LangWorker {
         this.languageService = new LanguageService();
     }
 
-    doValidation(): Promise<ITodoLangError[]> {
+    doValidation(): Promise<ILangError[]> {
         const code = this.getTextDocument();
         return Promise.resolve(this.languageService.validate(code));
     }

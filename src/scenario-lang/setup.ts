@@ -1,7 +1,10 @@
 import * as monaco from "monaco-editor-core";
-
 import { languageExtensionPoint, languageID } from "./config";
 import { monarchLanguage, richLanguageConfiguration } from "./ScenarioLang";
+import { LangWorker } from "./LangWorker";
+import { WorkerManager } from "./WorkerManager";
+import DiagnosticsAdapter from "./DiagnosticsAdapter";
+
 
 export function setupLanguage() {
     (window as any).MonacoEnvironment = {
