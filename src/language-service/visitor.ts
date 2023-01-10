@@ -15,29 +15,14 @@ export class CustomVisitor extends AbstractParseTreeVisitor<object> implements S
     }
 
     visitScenario (ctx: ScenarioContext): object {
-        console.log('visitScenario')
         return this.visitChildren(ctx)
     }
 
     visitBlock (ctx: BlockContext): object {
-        console.log('visitBlock')
-        return this.visitChildren(ctx)
+        return {[ctx._name.text]: this.visitChildren(ctx)}
     }
 
     visitVariable (ctx: VariableContext): object { 
-        console.log('visitVariable')
-        return this;
+        return {[ctx._k.text]: ctx._v.text}
     }
-
-    // visitAdditionOrSubtraction (ctx: AdditionOrSubtractionContext): object {
-    //     const left = this.visit(ctx._left)
-    //     const right = this.visit(ctx._right)
-        
-    //     var obj = {'addOrSub': `[[ ${left} ${ctx._operator.text} ${right} ]]`} 
-        
-    //     console.log('[+] visitAdditionOrSubtraction');
-    //     console.log(obj)
-
-    //     return obj;
-    // }
 }
