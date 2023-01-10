@@ -1,12 +1,12 @@
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import { ScenarioGrammarLexer } from '../ANTLR/ScenarioGrammarLexer'
-import { ScenarioGrammarParser, EquationContext } from '../ANTLR/ScenarioGrammarParser'
+import { ScenarioGrammarParser, ScenarioContext } from '../ANTLR/ScenarioGrammarParser'
 import { ScenarioGrammarVisitor } from '../ANTLR/ScenarioGrammarVisitor'
 import { ILangError, LangErrorListener } from './ErrorListener';
 
 
-export default function parse(code: string): {ast: EquationContext, errors: ILangError[]} {
+export default function parse(code: string): {ast: ScenarioContext, errors: ILangError[]} {
     let inputStream = new ANTLRInputStream(code);
     let lexer = new ScenarioGrammarLexer(inputStream);
 
@@ -21,14 +21,14 @@ export default function parse(code: string): {ast: EquationContext, errors: ILan
     parser.removeErrorListeners();
     parser.addErrorListener(langErrorsListner);
 
-    let ast = parser.equation();
+    let ast = parser.scenario();
     const errors: ILangError[]  = langErrorsListner.getErrors();
     // console.log(tree.toStringTree(parser));
 
     return {ast, errors};
 }
 
-export function parseAndGetASTRoot(code: string): EquationContext {
+export function parseAndGetASTRoot(code: string): ScenarioContext {
     const {ast} = parse(code);
     return ast;
 }

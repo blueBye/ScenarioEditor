@@ -15,6 +15,7 @@ export class LangWorker {
 
     doValidation(): Promise<ILangError[]> {
         const code = this.getTextDocument();
+        // todo: probebly i should call visitos here as well
         return Promise.resolve(this.languageService.validate(code));
     }
 

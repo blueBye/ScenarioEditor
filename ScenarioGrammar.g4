@@ -1,15 +1,17 @@
 grammar ScenarioGrammar;
 
-equation: expression;
+scenario: block+;
 
-expression:
-	NUMBER															# Number
-	| left = expression operator = (ADD | SUB) right = expression	# AdditionOrSubtraction;
+block: blockName ':' (variable)+;
+variable: variableName ':' variableValue EOL;
 
-ADD: '+';
-SUB: '-';
+blockName: BLOCK;
+variableName: VARIABLE;
+variableValue: STRING;
 
-NUMBER: [0-9]+;
-
-/* We're going to ignore all white space characters */
-WHITESPACE: [ \r\n\t]+ -> channel(HIDDEN);
+VARIABLE: [a-z][a-z0-9_]*;
+BLOCK: [A-Z][A-Z0-9_]*;
+STRING: '"' (~[#"])+ '"';
+COMMENT: '#' (~[\n])* -> skip;
+EOL: [\r\n]+;
+WHITESPACE: [ \t\r\n]+ -> skip;

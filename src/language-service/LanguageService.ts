@@ -1,4 +1,3 @@
-import { EquationContext } from "../ANTLR/ScenarioGrammarParser";
 import { parseAndGetASTRoot, parseAndGetSyntaxErrors } from "./Parser";
 import { ILangError } from "./ErrorListener";
 

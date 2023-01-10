@@ -18,7 +18,7 @@ const Editor: React.FC<IEditorPorps> = (props: IEditorPorps) => {
                 language: props.language,
                 minimap: { enabled: true },
                 autoIndent: true,
-                theme: 'hc-black',
+                theme: 'vs-dark',
                 roundedSelection: false,
                 lineNumbers: 'on',
                 scrollBeyondLastLine: true

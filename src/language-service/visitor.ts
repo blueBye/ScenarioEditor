@@ -1,9 +1,8 @@
 import { AbstractParseTreeVisitor } from 'antlr4ts/tree/AbstractParseTreeVisitor'
 import { ScenarioGrammarVisitor } from '../ANTLR/ScenarioGrammarVisitor'
-import { NumberContext } from "../ANTLR/ScenarioGrammarParser";
-import { AdditionOrSubtractionContext } from "../ANTLR/ScenarioGrammarParser";
-import { EquationContext } from "../ANTLR/ScenarioGrammarParser";
-import { ExpressionContext } from "../ANTLR/ScenarioGrammarParser";
+import { BlockContext } from "../ANTLR/ScenarioGrammarParser";
+import { ScenarioContext } from "../ANTLR/ScenarioGrammarParser";
+import { VariableContext } from "../ANTLR/ScenarioGrammarParser";
 
 
 export class CustomVisitor extends AbstractParseTreeVisitor<object> implements ScenarioGrammarVisitor<object> {
@@ -15,32 +14,30 @@ export class CustomVisitor extends AbstractParseTreeVisitor<object> implements S
         return Object.assign(aggregate, nextResult);
     }
 
-    visitEquation (ctx: EquationContext): object {
-        console.log('visitEquation');
+    visitScenario (ctx: ScenarioContext): object {
+        console.log('visitScenario')
         return this.visitChildren(ctx)
     }
 
-    visitExpression (ctx: ExpressionContext): object {
-        console.log('visitExpression');
+    visitBlock (ctx: BlockContext): object {
+        console.log('visitBlock')
         return this.visitChildren(ctx)
     }
 
-    visitNumber (ctx: NumberContext): object { 
-        let obj = {'number' : ctx.text} 
-        console.log('[+] visitNumber');
-        console.log(obj)
-        return obj;
+    visitVariable (ctx: VariableContext): object { 
+        console.log('visitVariable')
+        return this;
     }
 
-    visitAdditionOrSubtraction (ctx: AdditionOrSubtractionContext): object {
-        const left = this.visit(ctx._left)
-        const right = this.visit(ctx._right)
+    // visitAdditionOrSubtraction (ctx: AdditionOrSubtractionContext): object {
+    //     const left = this.visit(ctx._left)
+    //     const right = this.visit(ctx._right)
         
-        var obj = {'addOrSub': `[[ ${left} ${ctx._operator.text} ${right} ]]`} 
+    //     var obj = {'addOrSub': `[[ ${left} ${ctx._operator.text} ${right} ]]`} 
         
-        console.log('[+] visitAdditionOrSubtraction');
-        console.log(obj)
+    //     console.log('[+] visitAdditionOrSubtraction');
+    //     console.log(obj)
 
-        return obj;
-    }
+    //     return obj;
+    // }
 }

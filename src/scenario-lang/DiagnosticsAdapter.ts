@@ -8,8 +8,6 @@ export default class DiagnosticsAdapter {
         const onModelAdd = (model: monaco.editor.IModel): void => {
             let handle: any;
             model.onDidChangeContent(() => {
-                // here we are Debouncing the user changes, so everytime a new change is done, we wait 500ms before validating
-                // otherwise if the user is still typing, we cancel the
                 clearTimeout(handle);
                 handle = setTimeout(() => this.validate(model.uri), 500);
             });

@@ -87,7 +87,7 @@ export const monarchLanguage = <ILanguage>{
         'callback',
         'members',
         'levels',
-        'description'
+        'DESCRIPTION'
     ],
     typeKeywords: [
         'level', 
