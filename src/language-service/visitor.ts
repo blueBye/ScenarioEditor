@@ -29,6 +29,6 @@ export class CustomVisitor extends AbstractParseTreeVisitor<object> implements S
     }
 
     visitVariable (ctx: VariableContext): object { 
-        return {[ctx._k.text]: ctx._v.text}
+        return {[ctx._k.text]: ctx._v.text.slice(1,-1)}
     }
 }
