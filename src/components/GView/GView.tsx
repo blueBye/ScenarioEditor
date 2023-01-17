@@ -3,13 +3,21 @@ import { subject } from '../../service.js'
 
 
 const GView = () => {
-    this.subscription = subject.subscribe(res=>{
-        console.log('GVIiew: ' + res)
+    const [model, setModel] = React.useState(0);
+
+    subject.subscribe(res=>{
+        console.log(res)
+        setModel(res)
     })
 
     return (
-        <div id="view"></div>
+        <div id="view">
+            {Object.keys(model).map((key,i)=>{
+                return (<li key={i}>{model[key]}</li>)
+            })}
+        </div>
     )
 }
 
 export { GView };
+

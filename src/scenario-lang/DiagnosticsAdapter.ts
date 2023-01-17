@@ -33,7 +33,9 @@ export default class DiagnosticsAdapter {
         // add the error markers and underline them with severity of Error
         monaco.editor.setModelMarkers(model, languageID, errorMarkers.map(toDiagnostics));
 
-        sendMessage(await worker.doGetJson())
+        // update GView
+        let message = await worker.update() 
+        sendMessage(message)
     }
 }
 

@@ -11,12 +11,11 @@ export default class LanguageService {
         return syntaxErrors;
     }
 
-    getObject(code: string): object {
+    getOModel(code: string): object {
         // visitor
         const tree = parseAndGetASTRoot(code)
         const visitor = new CustomVisitor()
-        const objlist = visitor.visit(tree)
-
-        return {};
+        const model = visitor.visit(tree)
+        return model;
     }
 }

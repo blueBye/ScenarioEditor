@@ -18,9 +18,9 @@ export class LangWorker {
         return Promise.resolve(this.languageService.validate(code));
     }
 
-    doGetJson(): Promise<object> {
+    update(): Promise<object> {
         const code = this.getTextDocument();
-        return Promise.resolve(this.languageService.getObject(code));
+        return Promise.resolve(this.languageService.getOModel(code));
     }
 
     private getTextDocument(): string {
