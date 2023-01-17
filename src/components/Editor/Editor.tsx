@@ -8,7 +8,6 @@ interface IEditorPorps {
 const Editor: React.FC<IEditorPorps> = (props: IEditorPorps) => {
     let divNode;
     const assignRef = React.useCallback((node) => {
-        // On mount get the ref of the div and assign it the divNode
         divNode = node;
     }, []);
 
@@ -26,7 +25,14 @@ const Editor: React.FC<IEditorPorps> = (props: IEditorPorps) => {
         }
     }, [assignRef])
 
-    return <div ref={assignRef} style={{ height: '100%', width: '100%' }}></div>;
+    return (
+        <>
+            <div ref={assignRef} style={{ height: '100%', width: '100%' }}></div>
+            {/* <button onClick={onButtonPress}>Callback</button> */}
+        </>
+    )
 }
+
+
 
 export { Editor };

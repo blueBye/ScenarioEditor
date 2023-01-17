@@ -3,6 +3,7 @@ import { ScenarioGrammarVisitor } from '../ANTLR/ScenarioGrammarVisitor'
 import { BlockContext } from "../ANTLR/ScenarioGrammarParser";
 import { ScenarioContext } from "../ANTLR/ScenarioGrammarParser";
 import { VariableContext } from "../ANTLR/ScenarioGrammarParser";
+import { v4 as uuid } from 'uuid';
 
 
 export class CustomVisitor extends AbstractParseTreeVisitor<object> implements ScenarioGrammarVisitor<object> {
@@ -18,8 +19,13 @@ export class CustomVisitor extends AbstractParseTreeVisitor<object> implements S
         return this.visitChildren(ctx)
     }
 
-    visitBlock (ctx: BlockContext): object {
-        return {[ctx._name.text]: this.visitChildren(ctx)}
+    visitBlock (ctx: BlockContext): object {        
+        return {
+            [uuid()]: {
+                type: ctx._name.text,
+                ...this.visitChildren(ctx)
+            }
+        }
     }
 
     visitVariable (ctx: VariableContext): object { 

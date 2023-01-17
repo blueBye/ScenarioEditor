@@ -18,6 +18,11 @@ export class LangWorker {
         return Promise.resolve(this.languageService.validate(code));
     }
 
+    doGetJson(): Promise<object> {
+        const code = this.getTextDocument();
+        return Promise.resolve(this.languageService.getObject(code));
+    }
+
     private getTextDocument(): string {
         // When there are multiple files open, this will be an array
         const model = this._ctx.getMirrorModels()[0];

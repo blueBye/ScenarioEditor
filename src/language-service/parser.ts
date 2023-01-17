@@ -23,7 +23,6 @@ export default function parse(code: string): {ast: ScenarioContext, errors: ILan
 
     let ast = parser.scenario();
     const errors: ILangError[]  = langErrorsListner.getErrors();
-    // console.log(tree.toStringTree(parser));
 
     return {ast, errors};
 }
