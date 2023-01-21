@@ -2,7 +2,8 @@ import './Editor.css'
 import * as React from 'react';
 import * as monaco from 'monaco-editor-core';
 import { mouseSubject } from '../../service.js' 
-import { revealSubject } from '../../service.js' 
+import { revealSubject } from '../../service.js'
+
 
 interface IEditorPorps {
     language: string;
@@ -10,6 +11,7 @@ interface IEditorPorps {
 
 const Editor: React.FC<IEditorPorps> = (props: IEditorPorps) => {
     let divNode;
+    let decorator = []
     const assignRef = React.useCallback((node) => {
         divNode = node;
     }, []);
@@ -35,21 +37,22 @@ const Editor: React.FC<IEditorPorps> = (props: IEditorPorps) => {
             })
 
             revealSubject.subscribe(line=>{
-                editor.revealLineInCenter(line)
+                editor.revealLineInCenter(line['start'])
+                decorator = editor.deltaDecorations(
+                    decorator,
+                    [
+                        {
+                            range: new monaco.Range(line['start'], 1, line['stop'], 1),
+                            options: {
+                                isWholeLine: true,
+                                linesDecorationsClassName: 'lineDecoration'
+                            }
+                        }
+                    ]
+                );
             })
 
-            // editor.deltaDecorations(
-            //     [],
-            //     [
-            //         {
-            //             range: new monaco.Range(3, 1, 5, 1),
-            //             options: {
-            //                 isWholeLine: true,
-            //                 linesDecorationsClassName: 'lineDecoration'
-            //             }
-            //         }
-            //     ]
-            // );
+            
         }
     }, [assignRef])
 

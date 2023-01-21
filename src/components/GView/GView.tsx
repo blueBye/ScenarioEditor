@@ -1,17 +1,18 @@
 import './GView.css'
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import { subject, mouseSubject, revealSubject } from '../../service.js'
+import { modelSubject, mouseSubject, revealSubject } from '../../service.js'
 
 
 const GView = () => {
     const [model, setModel] = useState({});
     const [selected, setSelected] = useState("");
 
-    subject.subscribe(res=>{
+    modelSubject.subscribe(res=>{
         setModel(res)
     })
 
+    // when clicking on editor the block opens in GView
     mouseSubject.subscribe(line=>{        
         Object.keys(model).map((block, i)=>{
             if(model[block]['_line_start'] <= line.lineNumber) {
@@ -26,8 +27,12 @@ const GView = () => {
         setModel({temp: ''});
     }, []);
 
+    // when clicking on a box in GView, reveal it on editor
     const selectBox = (target) => {
-        revealSubject.next(model[target]['_line_start'])
+        revealSubject.next({
+            start: model[target]['_line_start'],
+            stop: model[target]['_line_stop']
+        })
         setSelected(target)
     }
 

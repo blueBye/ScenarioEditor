@@ -2,7 +2,7 @@ import * as monaco from "monaco-editor-core";
 import { WorkerAccessor } from "./setup";
 import { languageID } from "./config";
 import { ILangError } from "../language-service/ErrorListener";
-import { subject } from '../service.js'
+import { modelSubject } from '../service.js'
 
 
 export default class DiagnosticsAdapter {
@@ -11,7 +11,7 @@ export default class DiagnosticsAdapter {
             let handle: any;
 
             const sendMessage = (message: object) => {
-                subject.next(message)
+                modelSubject.next(message)
             }
             
             model.onDidChangeContent(() => {

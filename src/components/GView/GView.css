@@ -87,6 +87,7 @@ input:checked+.box .box-close {
 
 .view {
     padding: 10px;
+    overflow-y: scroll;
 }
 
 .arrows section .box-title {
