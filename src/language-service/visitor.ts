@@ -23,12 +23,16 @@ export class CustomVisitor extends AbstractParseTreeVisitor<object> implements S
         return {
             [uuid()]: {
                 type: ctx._name.text,
+                _line_start: ctx.start.line,
+                _line_stop: ctx.stop.line,
                 ...this.visitChildren(ctx)
             }
         }
     }
 
     visitVariable (ctx: VariableContext): object { 
-        return {[ctx._k.text]: ctx._v.text.slice(1,-1)}
+        return {
+            [ctx._k.text]: ctx._v.text.slice(1,-1)
+        }
     }
 }
