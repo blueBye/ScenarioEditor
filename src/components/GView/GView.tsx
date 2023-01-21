@@ -1,3 +1,4 @@
+import './GView.css'
 import * as React from 'react';
 import { subject } from '../../service.js'
 import {useEffect, useState} from 'react';
@@ -11,32 +12,45 @@ const GView = () => {
     })
 
     useEffect(() => {
-        setModel({asad: 12, dd: 'dd'});
+        setModel({temp: ''});
     }, []);
 
     return (
         <div id="view">
-            {Object.keys(model).map((block, index)=>{
-                return (
-                <ul key={index}>{index}: {JSON.stringify(model[block])}</ul>)
-            })}
+        <nav className="arrows">
+        
+        {Object.keys(model).map((block, i)=>{
+            return (
+                <>
+                    <input type="radio" name="accordion" id={block} />
+                    <section className="box">
+        			    <label className="box-title" htmlFor={block} >{model[block]['type']}</label>
+            			<label className="box-close" htmlFor="acc-close"></label>
+                        <div className="box-content">
+                            {Object.keys(model[block]).map((field, j)=> {
+                                return (
+                                    <li>
+                                        {field}: {model[block][field]}
+                                    </li>
+                                )
+                            })}
+                        </div>
+                    </section>
+                </>
+            )
+        })}
+
+        {/* <input type="radio" name="accordion" id="cb1" /> */}
+        {/* <section className="box"> */}
+			{/* <label className="box-title" htmlFor="cb1">Readme</label> */}
+			{/* <label className="box-close" htmlFor="acc-close"></label> */}
+			{/* <div className="box-content">Click on an item to open. Click on its header or the list header to close.</div> */}
+		{/* </section> */}
+        
+        <input type="radio" name="accordion" id="acc-close" />
+        </nav>
         </div>
     )
-
-    // let model = {}
-
-    // subject.subscribe(res=>{
-    //     console.log(res)
-    //     this.obj = res
-    // })
-
-    // return (
-    //     <div id="view">
-    //         {Object.keys(model).map((key,i)=>{
-    //             return (<li key={i}>{model[key]}</li>)
-    //         })}
-    //     </div>
-    // )
 }
 
 export { GView };
