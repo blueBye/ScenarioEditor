@@ -30,7 +30,8 @@ const GView = () => {
                             {Object.keys(model[block]).map((field, j)=> {
                                 return (
                                     <li>
-                                        {field}: {model[block][field]}
+                                        <span className="field-name">{field}</span>
+                                        {model[block][field]}
                                     </li>
                                 )
                             })}
