@@ -28,12 +28,12 @@ const Editor: React.FC<IEditorPorps> = (props: IEditorPorps) => {
                 scrollBeyondLastLine: true
             });
 
-            const sendMessage = (message: object) => {
-                mouseSubject.next(message)
-            }
-
             editor.onMouseDown(function (e) {
-                sendMessage(editor.getPosition())
+                decorator = editor.deltaDecorations(
+                    decorator,
+                    []
+                );
+                mouseSubject.next(editor.getPosition())
             })
 
             revealSubject.subscribe(line=>{
