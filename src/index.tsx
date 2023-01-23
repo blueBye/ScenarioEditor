@@ -5,9 +5,6 @@ import { Editor } from './components/Editor/Editor';
 import { GView } from './components/GView/GView';
 import { languageID } from './scenario-lang/config';
 import {setupLanguage} from "./scenario-lang/setup";
-import * as YAML from 'json-to-pretty-yaml'
-
-// import parse from "./language-service/Parser";
 
 
 setupLanguage();

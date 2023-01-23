@@ -2,6 +2,7 @@ import './GView.css'
 import * as React from 'react';
 import {useEffect, useState} from 'react';
 import { modelSubject, mouseSubject, revealSubject } from '../../service.js'
+import { Codegen } from '../Codegen/Codegen'
 
 
 const GView = () => {
@@ -33,37 +34,39 @@ const GView = () => {
             start: model[target]['_line_start'],
             stop: model[target]['_line_stop']
         })
+
         setSelected(target)
     }
 
     return (
         <div id="view" className='view'>
-        <nav className="arrows">
+            <Codegen model={model} />
+            <nav className="arrows">
         
-        {Object.keys(model).map((block, i)=>{
-            return (
-                <div>
-                    <input type="radio" name="accordion" id={block} checked={block == selected} />
-                    <section className="box" onClick={()=>selectBox(block)}>
-        			    <label className="box-title" htmlFor={block} >{model[block]['type']}</label>
-            			<label className="box-close" htmlFor="acc-close"></label>
-                        <div className="box-content">
-                            {Object.keys(model[block]).filter((n)=>!n.startsWith('_')).map((field, j)=> {
-                                return (
-                                    <li>
-                                        <span className="field-name">{field}</span>
-                                        {model[block][field]}
-                                    </li>
-                                )
-                            })}
-                        </div>
-                    </section>
-                </div>
-            )
-        })}
-        
-        <input type="radio" name="accordion" id="acc-close" />
-        </nav>
+            {Object.keys(model).map((block, i)=>{
+                return (
+                    <div>
+                        <input type="radio" name="accordion" id={block} checked={block == selected} />
+                        <section className="box" onClick={()=>selectBox(block)}>
+                            <label className="box-title" htmlFor={block} >{model[block]['type']}</label>
+                            <label className="box-close" htmlFor="acc-close"></label>
+                            <div className="box-content">
+                                {Object.keys(model[block]).filter((n)=>!n.startsWith('_')).map((field, j)=> {
+                                    return (
+                                        <li>
+                                            <span className="field-name">{field}</span>
+                                            {model[block][field]}
+                                        </li>
+                                    )
+                                })}
+                            </div>
+                        </section>
+                    </div>
+                )
+            })}
+            
+            <input type="radio" name="accordion" id="acc-close" />
+            </nav>
         </div>
     )
 }

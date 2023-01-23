@@ -14,9 +14,17 @@ export const monarchLanguage = <ILanguage>{
     defaultToken: 'invalid',
     keywords: [
         'accounts',
+        'mgmt_user',
+        'mgmt_protocol',
+        'type',
+        'owner',
+        'mode',
+        'unarchive',
         'image',
         'flavor',
         'src',
+        'cidr',
+        'accessible',
         'dst',
     ],
     typeKeywords: [
@@ -73,17 +81,24 @@ monaco.languages.registerCompletionItemProvider(languageID, {
 			{
 				label: 'SERVER',
 				kind: monaco.languages.CompletionItemKind.Snippet,
-				insertText: 'SERVER:\n\tflavor: "flavor" # replace\n\timage: "image" # replace\n',
+				insertText: 'SERVER_NAME:\n\ttype: "server"\n\tflavor: "replace"\n\timage: "replace"\n\tmgmt_user: "replace"\n\tmgmt_protocol: "replace"\n\taccounts: "replace [format: acc1,acc2,...]"\n',
 				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
                 range: range
 			},
             {
 				label: 'FILE',
 				kind: monaco.languages.CompletionItemKind.Snippet,
-				insertText: 'FILE:\n\tsrc: "source" # replace\n\tdst: "destination" # replace\n',
+				insertText: 'FILE_NAME:\n\ttype: "file"\n\tsrc: "replace"\n\tdst: "replace"\n\towner: "replace"\n\tmode: "replace"\n\tunarchive: "false"\n',
 				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
                 range: range
-			}
+			},
+            {
+				label: 'NETWORK',
+				kind: monaco.languages.CompletionItemKind.Snippet,
+				insertText: 'NETWORK_NAME:\n\ttype: "network"\n\tcidr: "replace"\n\taccessible: "false"\n\tnet_mappings: "replace"\n',
+				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                range: range
+			},
 		];
 		return { suggestions: suggestions };
 	}

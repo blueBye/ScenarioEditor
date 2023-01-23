@@ -3,6 +3,7 @@ import { ScenarioGrammarVisitor } from '../ANTLR/ScenarioGrammarVisitor'
 import { BlockContext } from "../ANTLR/ScenarioGrammarParser";
 import { ScenarioContext } from "../ANTLR/ScenarioGrammarParser";
 import { VariableContext } from "../ANTLR/ScenarioGrammarParser";
+import { ListContext } from "../ANTLR/ScenarioGrammarParser";
 import { v4 as uuid } from 'uuid';
 
 
@@ -30,7 +31,8 @@ export class CustomVisitor extends AbstractParseTreeVisitor<object> implements S
         }
     }
 
-    visitVariable (ctx: VariableContext): object { 
+    visitVariable (ctx: VariableContext): object {
+        
         return {
             [ctx._k.text]: ctx._v.text.slice(1,-1)
         }
