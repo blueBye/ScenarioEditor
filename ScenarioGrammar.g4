@@ -2,7 +2,9 @@ grammar ScenarioGrammar;
 
 scenario: block+;
 block: name = BLOCK ':' EOL (variable)+;
-variable: k = VARIABLE ':' v = STRING EOL;
+variable:
+	k = VARIABLE ':' (v = STRING EOL | EOL l += listitem+);
+listitem: '-' (k = BLOCK ':')? v = STRING EOL;
 
 VARIABLE: [a-z][a-z0-9_]*;
 BLOCK: [A-Z][A-Z0-9_]*;

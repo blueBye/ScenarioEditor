@@ -48,16 +48,46 @@ const GView = () => {
                     <div>
                         <input type="radio" name="accordion" id={block} checked={block == selected} />
                         <section className="box" onClick={()=>selectBox(block)}>
-                            <label className="box-title" htmlFor={block} >{model[block]['type']}</label>
+                            <label className="box-title" htmlFor={block} >{model[block]['type']}: {model[block]['_name']}</label>
                             <label className="box-close" htmlFor="acc-close"></label>
                             <div className="box-content">
                                 {Object.keys(model[block]).filter((n)=>!n.startsWith('_')).map((field, j)=> {
-                                    return (
-                                        <li>
-                                            <span className="field-name">{field}</span>
-                                            {model[block][field]}
-                                        </li>
-                                    )
+                                    if (Array.isArray(model[block][field])) {
+                                        return (
+                                            <li>
+                                                <span className="field-name">{field}</span>
+                                                <section className="subbox">
+                                                    <ul>
+                                                        {Object.keys(model[block][field]).map((item, k)=> {
+                                                            if (typeof(model[block][field][item]) == 'string') {
+                                                                return(
+                                                                    <li>{model[block][field][item]}</li>
+                                                                )
+                                                            }
+                                                            else {
+                                                                let key = Object.keys(model[block][field][item])[0];
+                                                                let value = model[block][field][item][key]
+                                                                return(
+                                                                    <li>
+                                                                        <span className='keylist'>{key}</span>
+                                                                        {value}
+                                                                    </li>
+                                                                )
+                                                            }
+                                                        })}
+                                                    </ul>
+                                                </section>
+                                            </li>
+                                        )    
+                                    }
+                                    else {
+                                        return (
+                                            <li>
+                                                <span className="field-name">{field}</span>
+                                                {model[block][field]}
+                                            </li>
+                                        )
+                                    }
                                 })}
                             </div>
                         </section>

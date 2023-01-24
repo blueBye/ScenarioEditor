@@ -13,19 +13,10 @@ export const monarchLanguage = <ILanguage>{
     // Set defaultToken to invalid to see what you do not tokenize yet
     defaultToken: 'invalid',
     keywords: [
-        'accounts',
-        'mgmt_user',
-        'mgmt_protocol',
-        'type',
-        'owner',
-        'mode',
-        'unarchive',
-        'image',
-        'flavor',
-        'src',
-        'cidr',
-        'accessible',
-        'dst',
+        'accounts', 'mgmt_user', 'mgmt_protocol', 'type', 'owner',
+        'mode', 'unarchive', 'image', 'flavor', 'src', 'cidr', 'username', 
+        'password', 'shell', 'files', 'services', 'softwares', 'accessible',
+        'net_mappings', 'dst',
     ],
     typeKeywords: [
         'SERVER', 
@@ -81,7 +72,7 @@ monaco.languages.registerCompletionItemProvider(languageID, {
 			{
 				label: 'SERVER',
 				kind: monaco.languages.CompletionItemKind.Snippet,
-				insertText: 'SERVER_NAME:\n\ttype: "server"\n\tflavor: "replace"\n\timage: "replace"\n\tmgmt_user: "replace"\n\tmgmt_protocol: "replace"\n\taccounts: "replace [format: acc1,acc2,...]"\n',
+				insertText: 'SERVER_NAME:\n\ttype: "server"\n\tflavor: "replace"\n\timage: "replace"\n\tmgmt_user: "replace"\n\tmgmt_protocol: "replace"\n\taccounts: "replace list"\n',
 				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
                 range: range
 			},
@@ -95,7 +86,14 @@ monaco.languages.registerCompletionItemProvider(languageID, {
             {
 				label: 'NETWORK',
 				kind: monaco.languages.CompletionItemKind.Snippet,
-				insertText: 'NETWORK_NAME:\n\ttype: "network"\n\tcidr: "replace"\n\taccessible: "false"\n\tnet_mappings: "replace"\n',
+				insertText: 'NETWORK_NAME:\n\ttype: "network"\n\tcidr: "replace"\n\taccessible: "false"\n\tnet_mappings: "replace list"\n',
+				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                range: range
+			},
+            {
+				label: 'ACCOUNT',
+				kind: monaco.languages.CompletionItemKind.Snippet,
+				insertText: 'ACCOUNT_NAME:\n\ttype: "account"\n\tusername: "replace"\n\tpassword: "replace"\n\tshell: "replace"\n\tsoftwares: "replace list"\n\tfiles: "replace list"\n\tservices: "replace list"\n',
 				insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
                 range: range
 			},

@@ -26,6 +26,19 @@ input {
     transition: all .15s ease-in-out;
 }
 
+.subbox {
+    position: relative;
+    background: #efefef;
+    padding: 10px;
+    margin-left: 40px;
+    color: black;
+}
+
+.keylist {
+    display: inline-block;
+    width: 60px;
+}
+
 .box::before {
     content: '';
     position: absolute;
